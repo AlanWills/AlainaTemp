@@ -44,47 +44,60 @@ namespace VRStandardAssets.Intro
         private UIFader m_questionTwoFader;
 
         [SerializeField]
-        private SelectionSlider m_QThreeSliderSelect;
+        private SelectionSlider m_questionThreeLeftSlider;
         [SerializeField]
-        private UIFader m_QTHREEFader;
+        private SelectionSlider m_questionThreeRightSlider;
+        [SerializeField]
+        private UIFader m_questionThreeFader;
 
         [SerializeField]
-        private SelectionSlider m_QFourSliderSelect;
+        private SelectionSlider m_questionFourLeftSlider;
         [SerializeField]
-        private UIFader m_QFourFader;
+        private SelectionSlider m_questionFourRightSlider;
+        [SerializeField]
+        private UIFader m_questionFourFader;
 
         [SerializeField]
-        private SelectionSlider m_QFiveSliderSelect;
+        private SelectionSlider m_questionFiveLeftSlider;
         [SerializeField]
-        private UIFader m_QFiveFader;
+        private SelectionSlider m_questionFiveRightSlider;
+        [SerializeField]
+        private UIFader m_questionFiveFader;
 
         [SerializeField]
-        private SelectionSlider m_QSixSliderSelect;
+        private SelectionSlider m_questionSixLeftSlider;
         [SerializeField]
-        private UIFader m_QSixFader;
+        private SelectionSlider m_questionSixRightSlider;
+        [SerializeField]
+        private UIFader m_questionSixFader;
 
         [SerializeField]
-        private SelectionSlider m_QSevenSliderSelect;
+        private SelectionSlider m_questionSevenLeftSlider;
         [SerializeField]
-        private UIFader m_QSevenFader;
+        private SelectionSlider m_questionSevenRightSlider;
+        [SerializeField]
+        private UIFader m_questionSevenFader;
 
         [SerializeField]
-        private SelectionSlider m_QEightSliderSelect;
+        private SelectionSlider m_questionEightLeftSlider;
         [SerializeField]
-        private UIFader m_QEightFader;
+        private SelectionSlider m_questionEightRightSlider;
+        [SerializeField]
+        private UIFader m_questionEightFader;
 
         [SerializeField]
-        private SelectionSlider m_QNineSliderSelect;
+        private SelectionSlider m_questionNineLeftSlider;
         [SerializeField]
-        private UIFader m_QNineFader;
+        private SelectionSlider m_questionNineRightSlider;
+        [SerializeField]
+        private UIFader m_questionNineFader;
 
         [SerializeField]
-        private SelectionSlider m_QTenSliderSelect;
+        private SelectionSlider m_questionTenLeftSlider;
         [SerializeField]
-        private UIFader m_QTenFader;
-
-
-
+        private SelectionSlider m_questionTenRightSlider;
+        [SerializeField]
+        private UIFader m_questionTenFader;
 
         [SerializeField]
         private UIFader m_ReturnFader;                     // The final instructions are controlled using this fader.
@@ -102,124 +115,71 @@ namespace VRStandardAssets.Intro
             yield return StartCoroutine(m_HowToUseSlider.WaitForBarToFill());
             yield return StartCoroutine(m_HowToUseFader.InteruptAndFadeOut());
 
-
             // In order, fade in the UI on confirming the use of sliders, wait for the slider to be filled, then fade out the UI.
             yield return StartCoroutine(m_HowToUseConfirmFader.InteruptAndFadeIn());
             yield return StartCoroutine(m_HowToUseConfirmSlider.WaitForBarToFill());
             yield return StartCoroutine(m_HowToUseConfirmFader.InteruptAndFadeOut());
 
-
             //1
-            StartCoroutine(QuestionOneLeftSliderCoroutines());
-            StartCoroutine(QuestionOneRightSliderCoroutines());
-
-
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionOneLeftSlider, m_questionOneRightSlider));
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeOut());
 
             //2
-            //yield return StartCoroutine (m_QTEOFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QTwoSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QTEOFader.InteruptAndFadeOut());
-
-
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionTwoLeftSlider, m_questionTwoRightSlider));
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeOut());
 
             //3
-            //yield return StartCoroutine (m_QTHREEFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QThreeSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QTHREEFader.InteruptAndFadeOut());
-            //
-            ////4
-            //yield return StartCoroutine (m_QFourFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QFourSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QFourFader.InteruptAndFadeOut());
-            //
-            ////5
-            //yield return StartCoroutine (m_QFiveFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QFiveSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QFiveFader.InteruptAndFadeOut());
-            //
-            ////6
-            //yield return StartCoroutine (m_QSixFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QSixSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QSixFader.InteruptAndFadeOut());
-            //
-            ////7
-            //yield return StartCoroutine (m_QSevenFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QSevenSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QSevenFader.InteruptAndFadeOut());
-            //
-            ////8
-            //yield return StartCoroutine (m_QEightFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QEightSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QEightFader.InteruptAndFadeOut());
-            //
-            ////9
-            //yield return StartCoroutine (m_QNineFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QNineSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QNineFader.InteruptAndFadeOut());
-            //
-            ////10
-            //yield return StartCoroutine (m_QTenFader.InteruptAndFadeIn ());
-            //yield return StartCoroutine ( m_QTenSliderSelect.WaitForBarToFill ());
-            //yield return StartCoroutine (m_QTenFader.InteruptAndFadeOut());
-            //
-            //
-            //
-            //// Fade in the final UI.
-            //yield return StartCoroutine (m_ReturnFader.InteruptAndFadeIn ());
+            yield return StartCoroutine(m_questionThreeFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionThreeLeftSlider, m_questionThreeRightSlider));
+            yield return StartCoroutine(m_questionThreeFader.InteruptAndFadeOut());
+
+            //4
+            yield return StartCoroutine(m_questionFourFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionFourLeftSlider, m_questionFourRightSlider));
+            yield return StartCoroutine(m_questionFourFader.InteruptAndFadeOut());
+            
+            //5
+            yield return StartCoroutine(m_questionFiveFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionFiveLeftSlider, m_questionFiveRightSlider));
+            yield return StartCoroutine(m_questionFiveFader.InteruptAndFadeOut());
+
+            //6
+            yield return StartCoroutine(m_questionSixFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionSixLeftSlider, m_questionSixRightSlider));
+            yield return StartCoroutine(m_questionSixFader.InteruptAndFadeOut());
+
+            //7
+            yield return StartCoroutine(m_questionSevenFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionSevenLeftSlider, m_questionSevenRightSlider));
+            yield return StartCoroutine(m_questionSevenFader.InteruptAndFadeOut());
+
+            //8
+            yield return StartCoroutine(m_questionEightFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionEightLeftSlider, m_questionEightRightSlider));
+            yield return StartCoroutine(m_questionEightFader.InteruptAndFadeOut());
+
+            //9
+            yield return StartCoroutine(m_questionNineFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionNineLeftSlider, m_questionNineRightSlider));
+            yield return StartCoroutine(m_questionNineFader.InteruptAndFadeOut());
+
+            //10
+            yield return StartCoroutine(m_questionTenFader.InteruptAndFadeIn());
+            yield return StartCoroutine(WaitForBarToFill(m_questionTenLeftSlider, m_questionTenRightSlider));
+            yield return StartCoroutine(m_questionTenFader.InteruptAndFadeOut());
+
+            // Fade in the final UI.
+            yield return StartCoroutine (m_ReturnFader.InteruptAndFadeIn ());
         }
 
-        private IEnumerator QuestionOneLeftSliderCoroutines()
+        private IEnumerator WaitForBarToFill(SelectionSlider leftSlider, SelectionSlider rightSlider)
         {
-            m_questionOneFader.gameObject.SetActive(true);
-
-            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeIn());
-            yield return StartCoroutine(m_questionOneLeftSlider.WaitForBarToFill());
-            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeOut());
-
-            StartCoroutine(QuestionTwoLeftSliderCoroutines());
-            StartCoroutine(QuestionTwoRightSliderCoroutines());
+            while (!leftSlider.BarFilled && !rightSlider.BarFilled)
+            {
+                yield return null;
+            }
         }
-
-        private IEnumerator QuestionOneRightSliderCoroutines()
-        {
-            m_questionOneFader.gameObject.SetActive(true);
-
-            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeIn());
-            yield return StartCoroutine(m_questionOneRightSlider.WaitForBarToFill());
-            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeOut());
-
-            StartCoroutine(QuestionTwoLeftSliderCoroutines());
-            StartCoroutine(QuestionTwoRightSliderCoroutines());
-        }
-
-        private IEnumerator QuestionTwoLeftSliderCoroutines()
-        {
-            m_questionTwoFader.gameObject.SetActive(true);
-            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeIn());
-            yield return StartCoroutine(m_questionTwoLeftSlider.WaitForBarToFill());
-            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeOut());
-        }
-
-        private IEnumerator QuestionTwoRightSliderCoroutines()
-        {
-            m_questionTwoFader.gameObject.SetActive(true);
-            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeIn());
-            yield return StartCoroutine(m_questionTwoRightSlider.WaitForBarToFill());
-            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeOut());
-        }
-
-        //private IEnumerator StartSliderCoroutines(UIFader fader, SelectionSlider slider, Func<IEnumerator> nextCoroutines)
-        //{
-        //    fader.gameObject.SetActive(true);
-
-        //    yield return StartCoroutine(fader.InteruptAndFadeIn());
-        //    yield return StartCoroutine(slider.WaitForBarToFill());
-        //    yield return StartCoroutine(fader.InteruptAndFadeOut());
-
-        //    if (nextCoroutines != null)
-        //    {
-        //        StartCoroutine(nextCoroutines.Invoke());
-        //    }
-        //}
     }
 }

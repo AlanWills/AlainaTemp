@@ -19,7 +19,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private AudioSource m_Audio;                       // Reference to the audio source that will play effects when the user looks at it and when it fills.
         [SerializeField] private AudioClip m_OnOverClip;                    // The clip to play when the user looks at the bar.
         [SerializeField] private AudioClip m_OnFilledClip;                  // The clip to play when the bar finishes filling.
-        [SerializeField] private Slider m_Slider, m_SliderB;                           // Optional reference to the UI slider (unnecessary if using a standard Renderer).
+        [SerializeField] private Slider m_Slider;                           // Optional reference to the UI slider (unnecessary if using a standard Renderer).
         [SerializeField] private VRInteractiveItem m_InteractiveItem;       // Reference to the VRInteractiveItem to determine when to fill the bar.
         [SerializeField] private VRInput m_VRInput;                         // Reference to the VRInput to detect button presses.
         [SerializeField] private GameObject m_BarCanvas;                    // Optional reference to the GameObject that holds the slider (only necessary if DisappearOnBarFill is true).
@@ -31,6 +31,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private bool m_DisappearOnBarFill;                 // Whether the bar should disappear instantly once it's been filled.
 
 
+        public bool BarFilled { get { return m_BarFilled; } }
         private bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
         private float m_Timer;                                              // Used to determine how much of the bar should be filled.
