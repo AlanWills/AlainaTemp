@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VRStandardAssets.Utils;
+using System;
 
 namespace VRStandardAssets.Intro
 {
@@ -29,19 +30,18 @@ namespace VRStandardAssets.Intro
 
 
         [SerializeField]
-        private SelectionSlider m_QOneSliderSelectA;     // SELECTS THE SLIDER TO USE
+        private SelectionSlider m_questionOneLeftSlider;
         [SerializeField]
-        private UIFader m_QOneFadera;						//FADES OUT THE SCENE
-
+        private SelectionSlider m_questionOneRightSlider;
         [SerializeField]
-        private SelectionSlider m_QOneSliderSelectB;     // SELECTS THE SLIDER TO USE
+        private UIFader m_questionOneFader;
+        
         [SerializeField]
-        private UIFader m_QOneFaderB;                       //FADES OUT THE SCENE
-
+        private SelectionSlider m_questionTwoLeftSlider;
         [SerializeField]
-        private SelectionSlider m_QTwoSliderSelect;
+        private SelectionSlider m_questionTwoRightSlider;
         [SerializeField]
-        private UIFader m_QTEOFader;
+        private UIFader m_questionTwoFader;
 
         [SerializeField]
         private SelectionSlider m_QThreeSliderSelect;
@@ -110,8 +110,8 @@ namespace VRStandardAssets.Intro
 
 
             //1
-            StartCoroutine(StartCoroutines1());
-            StartCoroutine(StartCoroutines2());
+            StartCoroutine(QuestionOneLeftSliderCoroutines());
+            StartCoroutine(QuestionOneRightSliderCoroutines());
 
 
 
@@ -168,30 +168,58 @@ namespace VRStandardAssets.Intro
             //yield return StartCoroutine (m_ReturnFader.InteruptAndFadeIn ());
         }
 
-        private IEnumerator StartCoroutines1()
+        private IEnumerator QuestionOneLeftSliderCoroutines()
         {
-            yield return StartCoroutine(m_QOneFadera.InteruptAndFadeIn());
-            yield return StartCoroutine(m_QOneSliderSelectA.WaitForBarToFill());
-            yield return StartCoroutine(m_QOneFadera.InteruptAndFadeOut());
+            m_questionOneFader.gameObject.SetActive(true);
 
-            StartCoroutine(StartCoroutines3());
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeIn());
+            yield return StartCoroutine(m_questionOneLeftSlider.WaitForBarToFill());
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeOut());
+
+            StartCoroutine(QuestionTwoLeftSliderCoroutines());
+            StartCoroutine(QuestionTwoRightSliderCoroutines());
         }
 
-        private IEnumerator StartCoroutines2()
+        private IEnumerator QuestionOneRightSliderCoroutines()
         {
-            yield return StartCoroutine(m_QOneFaderB.InteruptAndFadeIn());
-            yield return StartCoroutine(m_QOneSliderSelectB.WaitForBarToFill());
-            yield return StartCoroutine(m_QOneFaderB.InteruptAndFadeOut());
+            m_questionOneFader.gameObject.SetActive(true);
 
-            StartCoroutine(StartCoroutines3());
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeIn());
+            yield return StartCoroutine(m_questionOneRightSlider.WaitForBarToFill());
+            yield return StartCoroutine(m_questionOneFader.InteruptAndFadeOut());
+
+            StartCoroutine(QuestionTwoLeftSliderCoroutines());
+            StartCoroutine(QuestionTwoRightSliderCoroutines());
         }
 
-        private IEnumerator StartCoroutines3()
+        private IEnumerator QuestionTwoLeftSliderCoroutines()
         {
-            m_QTEOFader.gameObject.SetActive(true);
-            yield return StartCoroutine(m_QTEOFader.InteruptAndFadeIn());
-            yield return StartCoroutine(m_QTwoSliderSelect.WaitForBarToFill());
-            yield return StartCoroutine(m_QTEOFader.InteruptAndFadeOut());
+            m_questionTwoFader.gameObject.SetActive(true);
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeIn());
+            yield return StartCoroutine(m_questionTwoLeftSlider.WaitForBarToFill());
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeOut());
         }
+
+        private IEnumerator QuestionTwoRightSliderCoroutines()
+        {
+            m_questionTwoFader.gameObject.SetActive(true);
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeIn());
+            yield return StartCoroutine(m_questionTwoRightSlider.WaitForBarToFill());
+            yield return StartCoroutine(m_questionTwoFader.InteruptAndFadeOut());
+        }
+
+        //private IEnumerator StartSliderCoroutines(UIFader fader, SelectionSlider slider, Func<IEnumerator> nextCoroutines)
+        //{
+        //    fader.gameObject.SetActive(true);
+
+        //    yield return StartCoroutine(fader.InteruptAndFadeIn());
+        //    yield return StartCoroutine(slider.WaitForBarToFill());
+        //    yield return StartCoroutine(fader.InteruptAndFadeOut());
+
+        //    if (nextCoroutines != null)
+        //    {
+        //        StartCoroutine(nextCoroutines.Invoke());
+        //    }
+        //}
     }
 }

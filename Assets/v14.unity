@@ -13097,12 +13097,12 @@ MonoBehaviour:
   m_HowToUseSlider: {fileID: 1138161144}
   m_HowToUseConfirmFader: {fileID: 855431571}
   m_HowToUseConfirmSlider: {fileID: 453955610}
-  m_QOneSliderSelectA: {fileID: 2023128036}
-  m_QOneFadera: {fileID: 435910930}
-  m_QOneSliderSelectB: {fileID: 976818003}
-  m_QOneFaderB: {fileID: 435910930}
-  m_QTwoSliderSelect: {fileID: 787871572}
-  m_QTEOFader: {fileID: 342001954}
+  m_questionOneLeftSlider: {fileID: 2023128036}
+  m_questionOneRightSlider: {fileID: 976818003}
+  m_questionOneFader: {fileID: 435910930}
+  m_questionTwoLeftSlider: {fileID: 787871572}
+  m_questionTwoRightSlider: {fileID: 787871572}
+  m_questionTwoFader: {fileID: 342001954}
   m_QThreeSliderSelect: {fileID: 1518615745}
   m_QTHREEFader: {fileID: 1852670944}
   m_QFourSliderSelect: {fileID: 1882917721}
